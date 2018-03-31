@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Start Check In</title>
+</head>
+<body>
+	<div class="container">
+		<h2>Start Check In:</h2>
+		<form th:action="@{/startCheckIn}" th:object="${reservation}" method="post">
+			<br />
+			<div class="form-group" style="width: 30%">
+				<label for="id">Enter the reservation Id: </label> 
+				<input type="text"
+					th:field="*{id}" class="form-control"
+					placeholder="Enter first name" />
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Start Check In"
+					class="btn btn-success btn-send" />
+			</div>
+		</form>
+		<!--<a href="displayLocations" class="btn btn-info" role="button" align="center">View all</a>-->
+	</div>
+	<div class="alert alert-success" th:if="${msg != null}">
+		<strong th:text="${msg}"></strong>
+	</div>
+</body>
+</html>

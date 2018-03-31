@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Reservation Details</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+	<div class="container">
+		<h2>Flight details:</h2>
+		<div class="panel panel-default">
+			<div class="panel-heading">Reservation details: </div>
+			<div class="panel-body">
+				<label for="airline">Airline: </label> <p th:text="${reservation.flight.operatingAirlines}"></p>
+				<label for="airline">Flight No.: </label> <p th:text="${reservation.flight.flightNumber}"></p>
+				<label for="departureCity">Departure city: </label><p th:text="${reservation.flight.departureCity}"></p>
+				<label for="arrivalCity">Arrival city: </label><p th:text="${reservation.flight.arrivalCity}"></p>
+				<label for="arrivalCity">Date of departure: </label><p th:text="${reservation.flight.dateOfDeparture}"></p>
+				<label for="arrivalCity">Estimated departure time: </label><p th:text="${reservation.flight.estimatedDepartureTime}"></p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Passenger details: </div>
+			<div class="panel-body">
+				<label for="airline">First name: </label> <p th:text="${reservation.passenger.firstName}"></p>
+				<label for="airline">Last name: </label> <p th:text="${reservation.passenger.LastName}"></p>
+				<label for="airline">Email: </label> <p th:text="${reservation.passenger.email}"></p>
+				<label for="airline">Phone: </label> <p th:text="${reservation.passenger.phone}"></p>
+			</div>
+		</div>
+		<form th:action="@{/completeCheckIn}" th:object="${reservationRequest}" method="post">
+			<br />
+			<h2>Complete Check In: </h2>
+			<div class="form-group" style="width: 30%">
+				<label for="firstName">Enter the number of bags you want to check in: </label> 
+				<input type="text"
+					th:field="*{numberOfBags}" class="form-control"
+					placeholder="Enter first name" />
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Check In"
+					class="btn btn-success btn-send" />
+			</div>
+			<input type="hidden" name="reservationId" th:value="${reservation.id}"/>
+		</form>
+		<!--<a href="displayLocations" class="btn btn-info" role="button" align="center">View all</a>-->
+	</div>
+	<div class="alert alert-success" th:if="${msg != null}">
+		<strong th:text="${msg}"></strong>
+	</div>
+</body>
+</html>
